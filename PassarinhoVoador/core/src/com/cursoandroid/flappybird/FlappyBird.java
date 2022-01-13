@@ -2,6 +2,7 @@ package com.cursoandroid.flappybird;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -36,7 +37,7 @@ public class FlappyBird extends ApplicationAdapter {
 	private int pontuacao = 0;
 
 	private float variacao = 0;
-	private float velocidadeAsas = 0;
+	private float velocidadeAsas = 2;
 	private float velocidadeQueda = 0;
 	private float posicaoInicialVertical = 0;
 	private float posicaoMovimentoCanoHorizontal;
@@ -56,6 +57,10 @@ public class FlappyBird extends ApplicationAdapter {
 	private Viewport viewport;
 	private final float VIRTUAL_WIDTH = 768;
 	private final float VIRTUAL_HEIGHT = 1024;
+
+	private float velocidadeDificuldadeCano = 200;
+
+	private Music music;
 	
 	@Override
 	public void create () {
@@ -115,7 +120,9 @@ public class FlappyBird extends ApplicationAdapter {
 		//Limpar frames anteriores para liberar memória
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-		velocidadeAsas = 2f;
+		dificuldade(pontuacao);
+
+		//velocidadeAsas = 2f;
 		deltaTime = Gdx.graphics.getDeltaTime();
 		variacao += deltaTime * velocidadeAsas;
 
@@ -138,7 +145,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 			if(estadoJogo == 1) {
 
-				posicaoMovimentoCanoHorizontal -= deltaTime * 200;
+				posicaoMovimentoCanoHorizontal -= deltaTime * velocidadeDificuldadeCano;
 
 				if(Gdx.input.justTouched()) {
 
@@ -171,18 +178,10 @@ public class FlappyBird extends ApplicationAdapter {
 					velocidadeQueda = 0;
 					posicaoInicialVertical = alturaDispositivo / 2;
 					posicaoMovimentoCanoHorizontal = larguraDispositivo;
+					velocidadeDificuldadeCano = 200;
+					velocidadeAsas = 2;
 				}
 			}
-
-
-
-
-
-
-
-
-
-
 
 		}
 
@@ -252,5 +251,53 @@ public class FlappyBird extends ApplicationAdapter {
 	public void resize(int width, int height) {
 
 		viewport.update(width, height);
+	}
+
+	public void dificuldade(Integer pontuacao) {
+
+		switch (pontuacao) {
+
+			case 5:
+				velocidadeDificuldadeCano = 250;
+				velocidadeAsas = 5;
+				break;
+
+			case 8:
+				velocidadeDificuldadeCano = 300;
+				velocidadeAsas = 10;
+				break;
+
+			case 10:
+				velocidadeDificuldadeCano = 350;
+				velocidadeAsas = 15;
+				break;
+
+			case 12:
+				velocidadeDificuldadeCano = 400;
+				break;
+
+			case 15:
+				velocidadeDificuldadeCano = 450;
+				break;
+
+			case 20:
+				velocidadeDificuldadeCano = 500;
+				velocidadeAsas = 20;
+				break;
+
+			case 25:
+				velocidadeDificuldadeCano = 550;
+				break;
+
+			case 30:
+				velocidadeDificuldadeCano = 600;
+				break;
+
+			case 35:
+				velocidadeDificuldadeCano = 650;
+				break;
+
+		}
+
 	}
 }

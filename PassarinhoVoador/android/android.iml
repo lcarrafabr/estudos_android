@@ -74,9 +74,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Gradle: com.badlogicgames.gdx:gdx-backend-android:1.9.5@jar" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.badlogicgames.gdx:gdx-box2d:1.9.5@jar" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.badlogicgames.gdx:gdx:1.9.5@jar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.badlogicgames.gdx:gdx-backend-android:1.9.5@jar" level="project" />
     <orderEntry type="module" module-name="core" exported="" />
   </component>
 </module>
