@@ -3,6 +3,7 @@ package com.cursoandroid.flappybird;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -87,6 +88,12 @@ public class FlappyBird extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.position.set(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0);
 		viewport = new StretchViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, camera);
+
+		/**Sound*/
+		music = Gdx.audio.newMusic(Gdx.files.internal("musica_fundo.mp3"));
+		music.setLooping(true);
+		music.setVolume(0.1f);
+		music.play();
 
 		fundo = new Texture("fundo.png");
 		passaros = new Texture[3];
@@ -297,7 +304,22 @@ public class FlappyBird extends ApplicationAdapter {
 				velocidadeDificuldadeCano = 650;
 				break;
 
+			case 40:
+				velocidadeDificuldadeCano = 700;
+				break;
+
+			case 45:
+				velocidadeDificuldadeCano = 750;
+				break;
+
 		}
 
+	}
+
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		music.dispose();
 	}
 }
